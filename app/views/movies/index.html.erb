@@ -1,0 +1,29 @@
+<div class="container pt-4">
+
+  <%= form_with url: movies_path, method: :get, class: "d-flex" do %>
+    <div>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a movie"
+      %>
+    </div>
+    <div>
+      <%= select_tag "credit_card", options_for_select([ "VISA", "MasterCard" ], params[:credit_card]) %>
+    </div>
+    <div>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <div id="movies">
+        <% @movies.each do |movie| %>
+          <h4><%= movie.title %></h4>
+          <p><%= movie.synopsis %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
